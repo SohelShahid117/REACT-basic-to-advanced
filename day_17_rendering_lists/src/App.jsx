@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -11,6 +12,11 @@ function App() {
 
   const myButton = () => {
     alert("hello Sohel");
+  };
+
+  const { count, setCount } = useState(0);
+  const handleClick = () => {
+    setCount(count + 1);
   };
 
   return (
@@ -39,6 +45,8 @@ function App() {
       >
         Click Me
       </button>
+
+      <button onClick={handleClick}>Clickde {count} itmes</button>
     </>
   );
 }
