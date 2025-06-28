@@ -14,7 +14,7 @@ function App() {
     alert("hello Sohel");
   };
 
-  const { count, setCount } = useState(0);
+  const [count, setCount] = useState(0);
   const handleClick = () => {
     setCount(count + 1);
   };
@@ -41,12 +41,18 @@ function App() {
 
       <button
         onClick={myButton}
-        className="bg-blue-400 px-4 py-2 rounded-2xl text-white text-2xl hover:scale-110"
+        className="bg-blue-400 px-4 py-2 rounded-2xl text-white text-2xl hover:scale-110 block"
       >
         Click Me
       </button>
 
-      <button onClick={handleClick}>Clickde {count} itmes</button>
+      <button
+        onClick={handleClick}
+        className="bg-orange-400 my-5 px-4 py-2 rounded-2xl text-white text-2xl hover:scale-110 block"
+      >
+        Clicked <span className="text-black">{count}</span> itmes
+      </button>
+      <p>Count value is : {count}</p>
     </>
   );
 }
