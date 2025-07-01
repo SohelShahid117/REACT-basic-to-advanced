@@ -5,16 +5,38 @@ const Form = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
+  const [error, setError] = useState("");
+
+  console.log(error);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
     console.log("form submit");
-    alert(`hi ${name}`);
+    if (formValidationCheck()) {
+      alert(`hi ${name.toUpperCase()}.thanks for submitting the form`);
+      setName("");
+      setEmail("");
+      setMessage("");
+    }
     console.log(name, email, message);
-    alert("thanks for submitting the form");
-    setName("");
-    setEmail("");
-    setMessage("");
   };
+
+  const formValidationCheck = () => {
+    const newErr = {};
+    if (!name.trim()) {
+      newErr.name = "name is required";
+    }
+    if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) {
+      newErr.email = "invalid or empty email ";
+    }
+    if (!message.trim()) {
+      newErr.message = "message is required";
+    }
+    setError(newErr);
+    return Object.keys(newErr).length === 0;
+  };
+
   return (
     <form
       onSubmit={handleFormSubmit}
@@ -33,6 +55,9 @@ const Form = () => {
           placeholder="enter your name"
           className="border p-2 rounded-md"
         />
+        {error.name && (
+          <p className="text-red-500 text-sm italic mt-2">{error.name}</p>
+        )}
       </div>
       <div>
         <label className="block mb-1 text-xl" htmlFor="email">
@@ -47,6 +72,9 @@ const Form = () => {
           placeholder="enter your email"
           className="border p-2 rounded-md"
         />
+        {error.email && (
+          <p className="text-red-500 text-sm italic mt-2">{error.email}</p>
+        )}
       </div>
       <div>
         <label className="block mb-1 text-xl" htmlFor="message">
@@ -64,6 +92,9 @@ const Form = () => {
           rows="5"
           cols="50"
         ></textarea>
+        {error.message && (
+          <p className="text-red-500 text-sm italic mt-2">{error.message}</p>
+        )}
       </div>
       <button
         className="bg-blue-500 hover:bg-blue-700 px-6 py-3 rounded-md cursor-pointer text-white"
