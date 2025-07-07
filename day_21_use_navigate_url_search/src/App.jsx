@@ -22,6 +22,17 @@ function App() {
         >
           Logout
         </button>
+
+        <NavLink
+          to="/blogSearch"
+          className="bg-blue-500 text-white px-6 py-3 rounded m-5 font-bold"
+
+          // className={({ isActive }) =>
+          //   isActive ? "text-red-500" : "text-black"
+          // }
+        >
+          BlogSearch
+        </NavLink>
       </div>
     </>
   );
